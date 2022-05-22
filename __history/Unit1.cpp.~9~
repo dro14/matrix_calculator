@@ -232,5 +232,4 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	vector<vector<double>> matrix = input(Memo1);
 	show(matrix, Memo1);
 	ref(matrix, Memo2);
-    ShowMessage("It is done!");
 }
