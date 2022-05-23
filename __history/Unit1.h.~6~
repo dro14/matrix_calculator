@@ -23,6 +23,7 @@ using std::stringstream;
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
+	TButton *inputButton;
 	TMemo *matrixAmemo;
 	TMemo *MatrixBmemo;
 	TButton *rowechelonButtonA;

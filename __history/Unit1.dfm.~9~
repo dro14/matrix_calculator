@@ -41,6 +41,15 @@ object Form1: TForm1
     TabOrder = 0
     Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
   end
+  object inputButton: TButton
+    Left = 367
+    Top = 168
+    Width = 74
+    Height = 32
+    Caption = 'INPUT'
+    TabOrder = 1
+    OnClick = inputButtonClick
+  end
   object MatrixBmemo: TMemo
     Left = 465
     Top = 16
@@ -50,7 +59,7 @@ object Form1: TForm1
     Lines.Strings = (
       'Memo2')
     ScrollBars = ssBoth
-    TabOrder = 1
+    TabOrder = 2
   end
   object rowechelonButtonA: TButton
     Left = 32
@@ -58,7 +67,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Row-echelon form'
-    TabOrder = 2
+    TabOrder = 3
   end
   object rankButtonA: TButton
     Left = 32
@@ -67,7 +76,7 @@ object Form1: TForm1
     Height = 32
     Align = alCustom
     Caption = 'Rank'
-    TabOrder = 3
+    TabOrder = 4
   end
   object determinantButtonA: TButton
     Left = 32
@@ -76,7 +85,7 @@ object Form1: TForm1
     Height = 32
     Align = alCustom
     Caption = 'Determinant'
-    TabOrder = 4
+    TabOrder = 5
   end
   object additionButton: TButton
     Left = 367
@@ -84,7 +93,7 @@ object Form1: TForm1
     Width = 74
     Height = 32
     Caption = 'A + B'
-    TabOrder = 5
+    TabOrder = 6
   end
   object subtractionButton: TButton
     Left = 367
@@ -92,7 +101,7 @@ object Form1: TForm1
     Width = 74
     Height = 32
     Caption = 'A - B'
-    TabOrder = 6
+    TabOrder = 7
   end
   object multiplicationButton: TButton
     Left = 367
@@ -100,7 +109,7 @@ object Form1: TForm1
     Width = 74
     Height = 32
     Caption = 'A x B'
-    TabOrder = 7
+    TabOrder = 8
   end
   object inverseButtonA: TButton
     Left = 191
@@ -109,7 +118,7 @@ object Form1: TForm1
     Height = 32
     Align = alCustom
     Caption = 'Inverse'
-    TabOrder = 8
+    TabOrder = 9
   end
   object multiplyButtonA: TButton
     Left = 191
@@ -117,7 +126,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Multiply by             '
-    TabOrder = 9
+    TabOrder = 10
   end
   object constantselectionAEdit: TEdit
     Left = 303
@@ -125,7 +134,7 @@ object Form1: TForm1
     Width = 39
     Height = 21
     NumbersOnly = True
-    TabOrder = 10
+    TabOrder = 11
   end
   object outputMemo: TMemo
     Left = 283
@@ -135,7 +144,7 @@ object Form1: TForm1
     Color = clCream
     Lines.Strings = (
       'outputMemo')
-    TabOrder = 11
+    TabOrder = 12
   end
   object rowechelonButtonB: TButton
     Left = 447
@@ -143,7 +152,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Row-echelon form'
-    TabOrder = 12
+    TabOrder = 13
   end
   object rankButtonB: TButton
     Left = 447
@@ -151,7 +160,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Rank'
-    TabOrder = 13
+    TabOrder = 14
   end
   object inverseButtonB: TButton
     Left = 606
@@ -159,7 +168,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Inverse'
-    TabOrder = 14
+    TabOrder = 15
   end
   object determinantButtonB: TButton
     Left = 447
@@ -173,7 +182,7 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 15
+    TabOrder = 16
   end
   object multiplyButtonB: TButton
     Left = 606
@@ -181,7 +190,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Multiply by             '
-    TabOrder = 16
+    TabOrder = 17
   end
   object constantselectionBEdit: TEdit
     Left = 716
@@ -189,7 +198,7 @@ object Form1: TForm1
     Width = 36
     Height = 21
     NumbersOnly = True
-    TabOrder = 17
+    TabOrder = 18
   end
   object cleanButtonA: TButton
     Left = 191
@@ -197,7 +206,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Clean'
-    TabOrder = 18
+    TabOrder = 19
   end
   object powerButtonA: TButton
     Left = 32
@@ -205,7 +214,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Raise to the power of               '
-    TabOrder = 19
+    TabOrder = 20
   end
   object powerselectionAEdit: TEdit
     Left = 149
@@ -213,7 +222,7 @@ object Form1: TForm1
     Width = 36
     Height = 21
     NumbersOnly = True
-    TabOrder = 20
+    TabOrder = 21
   end
   object reducedrowechelonButtonA: TButton
     Left = 191
@@ -221,7 +230,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Reduced row-echelon form'
-    TabOrder = 21
+    TabOrder = 22
   end
   object reducedrowechelonButtonB: TButton
     Left = 606
@@ -229,7 +238,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Reduced row-echelon form'
-    TabOrder = 22
+    TabOrder = 23
   end
   object powerButtonB: TButton
     Left = 447
@@ -237,7 +246,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = ' Raise to the power of                '
-    TabOrder = 23
+    TabOrder = 24
   end
   object powerselectionBEdit: TEdit
     Left = 564
@@ -245,7 +254,7 @@ object Form1: TForm1
     Width = 36
     Height = 21
     NumbersOnly = True
-    TabOrder = 24
+    TabOrder = 25
   end
   object cleanButtonB: TButton
     Left = 606
@@ -253,7 +262,7 @@ object Form1: TForm1
     Width = 160
     Height = 32
     Caption = 'Clean'
-    TabOrder = 25
+    TabOrder = 26
   end
   object swapmatricesButton: TButton
     Left = 367
@@ -261,7 +270,7 @@ object Form1: TForm1
     Width = 74
     Height = 32
     Caption = ' <-->'
-    TabOrder = 26
+    TabOrder = 27
   end
   object equationlistBox: TComboBox
     Left = 308
@@ -277,7 +286,7 @@ object Form1: TForm1
     Font.Style = []
     ItemIndex = 0
     ParentFont = False
-    TabOrder = 27
+    TabOrder = 28
     Text = '2A + 3B'
     Items.Strings = (
       'rank(A)'
@@ -290,6 +299,6 @@ object Form1: TForm1
     Width = 41
     Height = 25
     Caption = '='
-    TabOrder = 28
+    TabOrder = 29
   end
 end

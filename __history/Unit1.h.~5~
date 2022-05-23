@@ -23,6 +23,7 @@ using std::stringstream;
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
+	TButton *inputButton;
 	TMemo *matrixAmemo;
 	TMemo *MatrixBmemo;
 	TButton *rowechelonButtonA;
@@ -43,17 +44,8 @@ __published:	// IDE-managed Components
 	TButton *determinantButtonB;
 	TButton *multiplyButtonB;
 	TEdit *constantselectionBEdit;
-	TButton *cleanButtonA;
-	TButton *powerButtonA;
-	TEdit *powerselectionAEdit;
-	TButton *reducedrowechelonButtonA;
-	TButton *reducedrowechelonButtonB;
-	TButton *powerButtonB;
-	TEdit *powerselectionBEdit;
-	TButton *cleanButtonB;
-	TButton *swapmatricesButton;
-	TComboBox *equationlistBox;
-	TButton *equalsButton;
+	TButton *clearButton;
+	TComboBox *ComboBox1;
 	void __fastcall inputButtonClick(TObject *Sender);
 private:	// User declarations
 protected:	// User declarations
