@@ -23,10 +23,38 @@ using std::stringstream;
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-	TButton *Button1;
 	TMemo *Memo1;
 	TMemo *Memo2;
-	void __fastcall Button1Click(TObject *Sender);
+	TButton *rowechelonButtonA;
+	TButton *rankButtonA;
+	TButton *determinantButtonA;
+	TButton *additionButton;
+	TButton *subtractionButton;
+	TButton *multiplicationButton;
+	TButton *inverseButtonA;
+	TButton *multiplyButtonA;
+	TEdit *constantselectionAEdit;
+	TMemo *outputMemo;
+	TLabel *matrixAlabel;
+	TLabel *matrixBlabel;
+	TButton *rowechelonButtonB;
+	TButton *rankButtonB;
+	TButton *inverseButtonB;
+	TButton *determinantButtonB;
+	TButton *multiplyButtonB;
+	TEdit *constantselectionBEdit;
+	TButton *cleanButtonA;
+	TButton *powerButtonA;
+	TEdit *powerselectionAEdit;
+	TButton *reducedrowechelonButtonA;
+	TButton *reducedrowechelonButtonB;
+	TButton *powerButtonB;
+	TEdit *powerselectionBEdit;
+	TButton *cleanButtonB;
+	TButton *swapmatricesButton;
+	TComboBox *equationlistBox;
+	TButton *equalsButton;
+	void __fastcall inputButtonClick(TObject *Sender);
 private:	// User declarations
 protected:	// User declarations
 public:		// User declarations

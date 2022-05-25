@@ -227,10 +227,19 @@ void TForm1::ref(vector<vector<double>>& matrix, TMemo* Memo) const
 	display("", Memo2);
 }
 
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TForm1::inputButtonClick(TObject *Sender)
 {
 	vector<vector<double>> matrix = input(Memo1);
 	show(matrix, Memo1);
 	ref(matrix, Memo2);
-    ShowMessage("It is done!");
 }
+
+
+
+
+
+
+
+
+
+
