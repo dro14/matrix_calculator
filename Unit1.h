@@ -15,61 +15,71 @@
 #include <ustring.h>
 using std::vector;
 using std::string;
-using std::stod;
-using std::endl;
 using std::setw;
 using std::stringstream;
+using std::to_string;
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-	TMemo *Memo1;
-	TMemo *Memo2;
-	TButton *rowechelonButtonA;
-	TButton *rankButtonA;
-	TButton *determinantButtonA;
 	TButton *additionButton;
 	TButton *subtractionButton;
 	TButton *multiplicationButton;
-	TButton *inverseButtonA;
-	TButton *multiplyButtonA;
-	TEdit *constantselectionAEdit;
-	TMemo *outputMemo;
-	TLabel *matrixAlabel;
-	TLabel *matrixBlabel;
-	TButton *rowechelonButtonB;
-	TButton *rankButtonB;
-	TButton *inverseButtonB;
-	TButton *determinantButtonB;
-	TButton *multiplyButtonB;
-	TEdit *constantselectionBEdit;
-	TButton *cleanButtonA;
-	TButton *powerButtonA;
-	TEdit *powerselectionAEdit;
-	TButton *reducedrowechelonButtonA;
-	TButton *reducedrowechelonButtonB;
-	TButton *powerButtonB;
-	TEdit *powerselectionBEdit;
-	TButton *cleanButtonB;
 	TButton *swapmatricesButton;
 	TComboBox *equationlistBox;
 	TButton *equalsButton;
-	void __fastcall inputButtonClick(TObject *Sender);
+	TGroupBox *matrixA;
+	TButton *cleanButtonA;
+	TMemo *memoInputMatrixA;
+	TButton *rowEchelonButtonA;
+	TButton *reducedRowEchelonButtonA;
+	TButton *determinantButtonA;
+	TButton *rankButtonA;
+	TButton *inverseButtonA;
+	TButton *multiplyButtonA;
+	TEdit *constantSelectionAEdit;
+	TButton *powerButtonA;
+	TEdit *powerSelectionAEdit;
+	TButton *transposeButtonA;
+	TGroupBox *matrixB;
+	TButton *cleanButtonB;
+	TMemo *memoInputMatrixB;
+	TButton *rowEchelonButtonB;
+	TButton *reducedRowEchelonButtonB;
+	TButton *determinantButtonB;
+	TButton *rankButtonB;
+	TButton *inverseButtonB;
+	TButton *multiplyButtonB;
+	TEdit *constantSelectionBEdit;
+	TButton *powerButtonB;
+	TEdit *powerSelectionBEdit;
+	TButton *transposeButtonB;
+	TGroupBox *GroupBox1;
+	TMemo *memoOutputMatrix;
+	void __fastcall cleanButtonAClick(TObject *Sender);
+	void __fastcall rowEchelonButtonAClick(TObject *Sender);
+	void __fastcall reducedRowEchelonButtonAClick(TObject *Sender);
+	void __fastcall rankButtonAClick(TObject *Sender);
+	void __fastcall determinantButtonAClick(TObject *Sender);
+	void __fastcall inverseButtonAClick(TObject *Sender);
 private:	// User declarations
 protected:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
 
-	template<typename T>
-	String to_String(const T&) const;
+	template<typename data_type1>
+	const String to_unicodeString(const data_type1&) const;
 
-	void display(const String&, TMemo*) const;
+	template<typename data_type2>
+	const void print(const data_type2&, TMemo*) const;
 
-	vector<vector<double>> input(TMemo*) const;
+	void endl();
 
-	void show(const vector<vector<double>>&, TMemo*) const;
+	const string to_str(const String&) const;
 
-	void ref(vector<vector<double>>&, TMemo*) const;
+	vector<vector<double>> inputMatrix(TMemo*) const;
+
+	void outputMatrix(const vector<vector<double>>&, TMemo*) const;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

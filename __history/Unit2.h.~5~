@@ -1,0 +1,18 @@
+//---------------------------------------------------------------------------
+#ifndef Unit2H
+#define Unit2H
+//---------------------------------------------------------------------------
+#include "Unit1.h"
+
+
+class functions
+{
+public:
+	void REF(vector<vector<double>>&);
+	void RREF(vector<vector<double>>&);
+	const int rank(vector<vector<double>>&);
+};
+
+//---------------------------------------------------------------------------
+#endif
+

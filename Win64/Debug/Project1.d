@@ -1,5 +1,5 @@
 .\Win64\Debug\Project1.o: \
-  C:\Users\doniy\OneDrive\Desktop\matrix_calculator\Project1PCH1.h \
+  C:\Users\doniy\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h \
   c:\program\ files\ (x86)\embarcadero\studio\21.0\include\windows\vcl\vcl.h \
   c:\program\ files\ (x86)\embarcadero\studio\21.0\include\windows\vcl\basepch0.h \
   c:\program\ files\ (x86)\embarcadero\studio\21.0\include\windows\rtl\System.hpp \

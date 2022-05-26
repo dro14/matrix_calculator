@@ -1,0 +1,98 @@
+//---------------------------------------------------------------------------
+#ifndef Unit1H
+#define Unit1H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+//---------------------------------------------------------------------------
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <ustring.h>
+using std::vector;
+using std::string;
+using std::stod;
+using std::endl;
+using std::setw;
+using std::stringstream;
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TButton *additionButton;
+	TButton *subtractionButton;
+	TButton *multiplicationButton;
+	TMemo *memoOutputMatrix;
+	TButton *rowechelonButtonB;
+	TButton *rankButtonB;
+	TButton *inverseButtonB;
+	TButton *determinantButtonB;
+	TButton *multiplyButtonB;
+	TEdit *constantselectionBEdit;
+	TButton *reducedrowechelonButtonB;
+	TButton *powerButtonB;
+	TEdit *powerselectionBEdit;
+	TButton *cleanButtonB;
+	TButton *swapmatricesButton;
+	TComboBox *equationlistBox;
+	TButton *equalsButton;
+	TGroupBox *GroupBox1;
+	TButton *Button1;
+	TMemo *memoInputMatrixA;
+	TButton *Button2;
+	TButton *Button3;
+	TButton *Button4;
+	TButton *Button5;
+	TButton *Button6;
+	TButton *Button7;
+	TEdit *Edit1;
+	TButton *Button8;
+	TEdit *Edit2;
+	TButton *Button9;
+	TGroupBox *GroupBox2;
+	TButton *Button10;
+	TMemo *memoInputMatrixB;
+	TButton *Button11;
+	TButton *Button12;
+	TButton *Button13;
+	TButton *Button14;
+	TButton *Button15;
+	TButton *Button16;
+	TEdit *Edit3;
+	TButton *Button17;
+	TEdit *Edit4;
+	TButton *Button18;
+	TMemo *Memo1;
+	TMemo *Memo2;
+	TButton *input_matrix;
+	TButton *output_matrix;
+	void __fastcall inputButtonClick(TObject *Sender);
+	void __fastcall input_matrixClick(TObject *Sender);
+	void __fastcall memoInputMatrixAChange(TObject *Sender);
+	void __fastcall memoInputMatrixBChange(TObject *Sender);
+private:	// User declarations
+protected:	// User declarations
+    vector<vector<double>> matrix;
+public:		// User declarations
+	__fastcall TForm1(TComponent* Owner);
+
+	template<typename data_type1>
+	const String to_unicodeString(const data_type1&) const;
+
+	template<typename data_type2>
+	const void print(const data_type2&, TMemo*) const;
+
+	const string to_str(const String&) const;
+
+	vector<vector<double>> inputMatrix(TMemo*) const;
+
+	void outputMatrix(const vector<vector<double>>&, TMemo*) const;
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif

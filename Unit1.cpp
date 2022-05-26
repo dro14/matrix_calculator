@@ -3,6 +3,7 @@
 #pragma hdrstop
 
 #include "Unit1.h"
+#include "Unit2.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -11,13 +12,14 @@ TForm1 *Form1;
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {
-	String empty;
-	Memo1->Text = empty;
-	Memo2->Text = empty;
+	memoInputMatrixA->Text = "";
+	memoInputMatrixB->Text = "";
+	memoOutputMatrix->Text = "";
 }
 //---------------------------------------------------------------------------
-template<typename T>
-String TForm1::to_String(const T& text) const
+
+template<typename data_type1>
+const String TForm1::to_unicodeString(const data_type1& text) const
 {
 	String Str;
 
@@ -32,12 +34,30 @@ String TForm1::to_String(const T& text) const
 	return Str;
 }
 
-void TForm1::display(const String& Str, TMemo* Memo) const
+template<typename data_type2>
+const void TForm1::print(const data_type2& text, TMemo* Memo) const
 {
-	Memo->Lines->Add(Str);
+	Memo->Lines->Add(to_unicodeString(text));
 }
 
-vector<vector<double>> TForm1::input(TMemo* Memo) const
+void TForm1::endl()
+{
+	print("", memoOutputMatrix);
+}
+
+const string TForm1::to_str(const String& Str) const
+{
+	int String_Length = Str.Length();
+	string str = "";
+
+	for (int i = 1; i <= String_Length; i++) {
+		str += Str[i];
+	}
+
+	return str;
+}
+
+vector<vector<double>> TForm1::inputMatrix(TMemo* Memo) const
 {
 	int num_of_rows = Memo->Lines->Count;
 	double temp = NULL;
@@ -65,7 +85,7 @@ vector<vector<double>> TForm1::input(TMemo* Memo) const
 	return matrix;
 }
 
-void TForm1::show(const vector<vector<double>>& matrix, TMemo* Memo) const
+void TForm1::outputMatrix(const vector<vector<double>>& matrix, TMemo* Memo) const
 {
 	int num_of_rows = matrix.size();
 	int num_of_columns = matrix[0].size();
@@ -81,7 +101,6 @@ void TForm1::show(const vector<vector<double>>& matrix, TMemo* Memo) const
 			vec_str.push_back(s.str());
 	}
 
-//	Memo->Text = Str;
 	for (int i = 0; i < num_of_rows; i++) {
 		for (int j = 0; j < vec_str[i].length(); j++) {
 			Str += vec_str[i][j];
@@ -91,155 +110,102 @@ void TForm1::show(const vector<vector<double>>& matrix, TMemo* Memo) const
 		Str.~UnicodeString();
 	}
 }
+//---------------------------------------------------------------------------
 
-void TForm1::ref(vector<vector<double>>& matrix, TMemo* Memo) const
+void __fastcall TForm1::cleanButtonAClick(TObject *Sender)
 {
-	vector<vector<double>> &A = matrix;
-	unsigned long long nr = matrix.size();
-	unsigned long long nc = matrix[0].size();
-
-	display("", Memo);
-	display("", Memo);
-	display("Original matrix:", Memo);
-	display("", Memo);
-	show(matrix, Memo);
-	display("", Memo);
-	display("", Memo);
-
-//  Putting zero rows at the bottom
-	check_again_1:
-	for (int r = 0; r < nr; r++) {
-
-//      Checking whether the current row is a zero row or not
-		bool allZeros = true;
-		for (int c = 0; c < nc; c++) {
-			if (A[r][c] != 0) {
-				allZeros = false;
-				break;
-			}
-		}
-
-//      If the current row is a zero row, then swap it with the last row
-		if (allZeros && r != nr - 1) {
-			for (int i = 0; i < nc; i++) {
-				double temp_a = A[r][i];
-				A[r][i] = A[nr - 1][i];
-				A[nr - 1][i] = temp_a;
-			}
-
-			display("Swapping row " + to_String(nr) + " with row "
-				+ to_String(r + 1) + ", which is a zero row", Memo2);
-			display("", Memo2);
-			show(matrix, Memo2);
-			display("", Memo2);
-
-			nr--;
-			goto check_again_1;
-		}
-	}
-
-	int row = -1;
-	for (int i = 0; i < nc; i++) {
-		if (row + 1 < nr) row++;
-		next_column:
-
-//      Search for maximum in this column
-		double maxEl = abs(A[row][i]);
-		int maxRow = row;
-		for (int r = row + 1; r < nr; r++) {
-			if (maxEl < abs(A[r][i])) {
-				maxEl = abs(A[r][i]);
-				maxRow = r;
-			}
-		}
-
-//      Swap maximum row with current row (column by column)
-		if (row != maxRow && maxEl != 0) {
-			for (int c = 0; c < nc; c++) {
-				double temp_a = A[row][c];
-				A[row][c] = A[maxRow][c];
-				A[maxRow][c] = temp_a;
-			}
-			display("Swapping row " + to_String(row + 1) + " with row "
-				+ to_String(maxRow + 1) + ", which has the maximum absolute value of "
-				+ to_String(maxEl) + " in column " + to_String(i + 1), Memo2);
-			display("", Memo2);
-			show(matrix, Memo2);
-			display("", Memo2);
-		} else if (maxEl == 0 && i + 1 < nc) {
-			i++;
-			goto next_column;
-		}
-
-//      Make all rows below the current row 0 in current column
-		for (int k = row + 1; k < nr; k++) {
-			double g = A[k][i] / A[row][i];
-			if (g != 0 && A[row][i] != 0) {
-				for (int j = 0; j < nc; j++) {
-					A[k][j] -= g * A[row][j];
-					if (abs(A[k][j]) < 1e-10 || A[k][j] == -0) A[k][j] = 0;
-				}
-				display("Subtracting row " + to_String(row + 1) + " multiplied by "
-					+ to_String(g) + " from row " + to_String(k + 1), Memo2);
-				display("", Memo2);
-				show(matrix, Memo2);
-				display("", Memo2);
-			}
-		}
-	}
-
-//  Putting zero rows at the bottom
-	check_again_2:
-	for (int r = 0; r < nr; r++) {
-
-//      Checking whether the current row is a zero row or not
-		bool allZeros = true;
-		for (int c = 0; c < nc; c++) {
-			if (A[r][c] != 0) {
-				allZeros = false;
-				break;
-			}
-		}
-
-//      If the current row is a zero row, then swap it with the last row
-		if (allZeros && r != nr - 1) {
-			for (int i = 0; i < nc; i++) {
-				double temp_a = A[r][i];
-				A[r][i] = A[nr - 1][i];
-				A[nr - 1][i] = temp_a;
-			}
-
-			display("Swapping row " + to_String(nr) + " with row " + to_String(r + 1) + ", which is a zero row", Memo2);
-			display("", Memo2);
-			show(matrix, Memo2);
-			display("", Memo2);
-
-			nr--;
-			goto check_again_2;
-		}
-	}
-
-	display("", Memo2);
-	display("The matrix in Row Echelon Form:", Memo2);
-	display("", Memo2);
-	show(matrix, Memo2);
-	display("", Memo2);
-	display("", Memo2);
+	memoInputMatrixA->Text = "";
 }
+//---------------------------------------------------------------------------
 
-void __fastcall TForm1::inputButtonClick(TObject *Sender)
+void __fastcall TForm1::rowEchelonButtonAClick(TObject *Sender)
 {
-	vector<vector<double>> matrix = input(Memo1);
-	show(matrix, Memo1);
-	ref(matrix, Memo2);
+	memoOutputMatrix->Text = "";
+	vector<vector<double>> matrix;
+	matrix = inputMatrix(memoInputMatrixA);
+	functions* obj;
+	obj->REF(matrix);
+	print("The matrix in row-echelon form:", memoOutputMatrix);
+	endl();
+	outputMatrix(matrix, memoOutputMatrix);
 }
+//---------------------------------------------------------------------------
 
+void __fastcall TForm1::reducedRowEchelonButtonAClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	vector<vector<double>> matrix;
+	matrix = inputMatrix(memoInputMatrixA);
+	functions* obj;
+	obj->RREF(matrix);
+	print("The matrix in reduced row-echelon form:", memoOutputMatrix);
+	endl();
+	outputMatrix(matrix, memoOutputMatrix);
+}
+//---------------------------------------------------------------------------
 
+void __fastcall TForm1::rankButtonAClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	vector<vector<double>> matrix;
+	matrix = inputMatrix(memoInputMatrixA);
+	functions* obj;
+	const int rank = obj->rank(matrix);
+	print("The matrix in reduced row-echelon form:", memoOutputMatrix);
+	endl();
+	outputMatrix(matrix, memoOutputMatrix);
+	endl();
+	print("The matrix's rank is " + to_string(rank), memoOutputMatrix);
+}
+//---------------------------------------------------------------------------
 
+void __fastcall TForm1::determinantButtonAClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	vector<vector<double>> matrix;
+	matrix = inputMatrix(memoInputMatrixA);
+	functions* obj;
+	const double determinant = obj->determinant(matrix);
+	stringstream s;
+	s << determinant;
+	if (matrix.size() == matrix[0].size()) {
+		print("The matrix in row-echelon form:", memoOutputMatrix);
+		endl();
+		outputMatrix(matrix, memoOutputMatrix);
+		endl();
+		print("A matrix in row-echelon form is also an upper triangular matrix.", memoOutputMatrix);
+		print("Thus, the product of the diagonal elements is equal to its determinant.", memoOutputMatrix);
+		endl();
+		print("The matrix's determinant is " + s.str(), memoOutputMatrix);
+	} else {
+		ShowMessage("The matrix does not have a determinant and is not invertible because the number of rows is not equal to the number of columns. In other words, the matrix is not a square matrix, and Determinant and Inverse functions work only for square matrices");
+	}
+}
+//---------------------------------------------------------------------------
 
-
-
-
-
-
-
+void __fastcall TForm1::inverseButtonAClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	vector<vector<double>> matrix;
+	vector<vector<double>> identity_matrix;
+	matrix = inputMatrix(memoInputMatrixA);
+	if (matrix.size() == matrix[0].size()) {
+		functions* obj;
+		identity_matrix = obj->inverse(matrix);
+		if (identity_matrix.size() == 1 && identity_matrix[0].size() == 1
+			&& identity_matrix[0][0] == 2.718281828459045) {
+			print("The matrix is not invertible because its reduced row-echelon form", memoOutputMatrix);
+			print("is not the identity matrix.", memoOutputMatrix);
+			print("The matrix in reduced row-echelon form:", memoOutputMatrix);
+			endl();
+			outputMatrix(matrix, memoOutputMatrix);
+		} else {
+			print("Inverse matrix:", memoOutputMatrix);
+			endl();
+			outputMatrix(identity_matrix, memoOutputMatrix);
+		}
+	} else {
+		ShowMessage("The matrix does not have a determinant and is not invertible because the number of rows is not equal to the number of columns. In other words, the matrix is not a square matrix, and Determinant and Inverse functions work only for square matrices");
+	}
+}
+//---------------------------------------------------------------------------
