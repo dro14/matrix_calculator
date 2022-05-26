@@ -81,7 +81,7 @@ object Form1: TForm1
     Top = 8
     Width = 352
     Height = 425
-    Caption = 'Matrix A'
+    Caption = 'MATRIX A'
     Color = clMaroon
     ParentBackground = False
     ParentColor = False
@@ -163,13 +163,13 @@ object Form1: TForm1
       Height = 32
       Caption = 'Multiply by             '
       TabOrder = 7
+      OnClick = multiplyButtonAClick
     end
     object constantSelectionAEdit: TEdit
       Left = 105
       Top = 384
       Width = 39
       Height = 21
-      NumbersOnly = True
       TabOrder = 8
     end
     object powerButtonA: TButton
@@ -179,13 +179,13 @@ object Form1: TForm1
       Height = 32
       Caption = 'Raise to the power of               '
       TabOrder = 9
+      OnClick = powerButtonAClick
     end
     object powerSelectionAEdit: TEdit
       Left = 301
       Top = 384
       Width = 36
       Height = 21
-      NumbersOnly = True
       TabOrder = 10
     end
     object transposeButtonA: TButton
@@ -196,6 +196,7 @@ object Form1: TForm1
       Align = alCustom
       Caption = 'Transpose'
       TabOrder = 11
+      OnClick = transposeButtonAClick
     end
   end
   object matrixB: TGroupBox
@@ -203,7 +204,7 @@ object Form1: TForm1
     Top = 8
     Width = 352
     Height = 425
-    Caption = 'Matrix B'
+    Caption = 'MATRIX B'
     Color = clOlive
     ParentBackground = False
     ParentColor = False
@@ -215,6 +216,7 @@ object Form1: TForm1
       Height = 32
       Caption = 'Clean'
       TabOrder = 0
+      OnClick = cleanButtonBClick
     end
     object memoInputMatrixB: TMemo
       Left = 19
@@ -236,6 +238,7 @@ object Form1: TForm1
       Height = 32
       Caption = 'Row-echelon form'
       TabOrder = 2
+      OnClick = rowEchelonButtonBClick
     end
     object reducedRowEchelonButtonB: TButton
       Left = 182
@@ -244,6 +247,7 @@ object Form1: TForm1
       Height = 32
       Caption = 'Reduced row-echelon form'
       TabOrder = 3
+      OnClick = reducedRowEchelonButtonBClick
     end
     object determinantButtonB: TButton
       Left = 182
@@ -253,6 +257,7 @@ object Form1: TForm1
       Align = alCustom
       Caption = 'Determinant'
       TabOrder = 4
+      OnClick = determinantButtonBClick
     end
     object rankButtonB: TButton
       Left = 16
@@ -262,6 +267,7 @@ object Form1: TForm1
       Align = alCustom
       Caption = 'Rank'
       TabOrder = 5
+      OnClick = rankButtonBClick
     end
     object inverseButtonB: TButton
       Left = 16
@@ -271,6 +277,7 @@ object Form1: TForm1
       Align = alCustom
       Caption = 'Inverse'
       TabOrder = 6
+      OnClick = inverseButtonBClick
     end
     object multiplyButtonB: TButton
       Left = 16
@@ -279,13 +286,13 @@ object Form1: TForm1
       Height = 32
       Caption = 'Multiply by             '
       TabOrder = 7
+      OnClick = multiplyButtonBClick
     end
     object constantSelectionBEdit: TEdit
       Left = 105
       Top = 384
       Width = 39
       Height = 21
-      NumbersOnly = True
       TabOrder = 8
     end
     object powerButtonB: TButton
@@ -295,13 +302,13 @@ object Form1: TForm1
       Height = 32
       Caption = 'Raise to the power of               '
       TabOrder = 9
+      OnClick = powerButtonBClick
     end
     object powerSelectionBEdit: TEdit
       Left = 300
       Top = 384
       Width = 36
       Height = 21
-      NumbersOnly = True
       TabOrder = 10
     end
     object transposeButtonB: TButton
@@ -312,14 +319,15 @@ object Form1: TForm1
       Align = alCustom
       Caption = 'Transpose'
       TabOrder = 11
+      OnClick = transposeButtonBClick
     end
   end
-  object GroupBox1: TGroupBox
+  object output: TGroupBox
     Left = 238
     Top = 439
     Width = 459
     Height = 250
-    Caption = 'Output'
+    Caption = 'RESULT'
     Color = clGreen
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

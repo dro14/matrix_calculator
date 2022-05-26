@@ -68,12 +68,6 @@ __published:	// IDE-managed Components
 	void __fastcall rankButtonBClick(TObject *Sender);
 	void __fastcall determinantButtonBClick(TObject *Sender);
 	void __fastcall inverseButtonBClick(TObject *Sender);
-	void __fastcall transposeButtonAClick(TObject *Sender);
-	void __fastcall multiplyButtonAClick(TObject *Sender);
-	void __fastcall powerButtonAClick(TObject *Sender);
-	void __fastcall transposeButtonBClick(TObject *Sender);
-	void __fastcall multiplyButtonBClick(TObject *Sender);
-	void __fastcall powerButtonBClick(TObject *Sender);
 private:	// User declarations
 protected:	// User declarations
 public:		// User declarations

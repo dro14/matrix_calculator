@@ -82,18 +82,6 @@ vector<vector<double>> TForm1::inputMatrix(TMemo* Memo) const
 		matrix.push_back(vec);
 		vec.clear();
 	}
-
-//    Filling with zeros
-	int max=0;
-	for(int i=0; i<matrix.size(); i++){
-		if(matrix[i].size()>max)max=matrix[i].size();
-		for(int i=0; i<matrix.size(); i++){
-			for(int k=matrix[i].size(); k<max; k++){
-				matrix[i].push_back(0);
-			}
-		}
-	}
-
 	return matrix;
 }
 
@@ -230,7 +218,7 @@ void __fastcall TForm1::cleanButtonBClick(TObject *Sender)
 
 void __fastcall TForm1::rowEchelonButtonBClick(TObject *Sender)
 {
-	memoOutputMatrix->Text = "";
+    memoOutputMatrix->Text = "";
 	vector<vector<double>> matrix;
 	matrix = inputMatrix(memoInputMatrixB);
 	functions* obj;
@@ -317,130 +305,6 @@ void __fastcall TForm1::inverseButtonBClick(TObject *Sender)
 	} else {
 		ShowMessage("The matrix does not have a determinant and is not invertible because the number of rows is not equal to the number of columns. In other words, the matrix is not a square matrix, and Determinant and Inverse functions work only for square matrices");
 	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::transposeButtonAClick(TObject *Sender)
-{
-	memoOutputMatrix->Text = "";
-	vector<vector<double>> matrix;
-	matrix = inputMatrix(memoInputMatrixA);
-	functions* obj;
-	matrix = obj->transpose(matrix);
-	print("The transposed matrix:", memoOutputMatrix);
-	endl();
-	outputMatrix(matrix, memoOutputMatrix);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::multiplyButtonAClick(TObject *Sender)
-{
-	memoOutputMatrix->Text = "";
-	vector<vector<double>> matrix;
-	matrix = inputMatrix(memoInputMatrixA);
-	string str = to_str(constantSelectionAEdit->Text);
-	stringstream s(str);
-	double coefficent;
-	s >> coefficent;
-	stringstream ss;
-	if (coefficent > 1e-10)
-		ss << coefficent;
-	else {
-		coefficent = 1;
-		ss << coefficent;
-	}
-
-	functions* obj;
-	matrix = obj->multiplier_bykoef(matrix, coefficent);
-	print("The matrix multiplied by " + ss.str() + " :", memoOutputMatrix);
-	endl();
-	outputMatrix(matrix, memoOutputMatrix);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::powerButtonAClick(TObject *Sender)
-{
-	memoOutputMatrix->Text = "";
-	vector<vector<double>> matrix;
-	matrix = inputMatrix(memoInputMatrixA);
-	string str = to_str(powerSelectionAEdit->Text);
-	stringstream s(str);
-	int power;
-	s >> power;
-	stringstream ss;
-	if (power > 1e-10)
-		ss << power;
-	else {
-		power = 1;
-		ss << power;
-	}
-	functions* obj;
-	matrix = obj->power(matrix, power);
-	print("The matrix raised to the power of " + ss.str() + " :", memoOutputMatrix);
-	endl();
-	outputMatrix(matrix, memoOutputMatrix);
-}
-//---------------------------------------------------------------------------
-
-
-void __fastcall TForm1::transposeButtonBClick(TObject *Sender)
-{
-	memoOutputMatrix->Text = "";
-	vector<vector<double>> matrix;
-	matrix = inputMatrix(memoInputMatrixB);
-	functions* obj;
-	matrix = obj->transpose(matrix);
-	print("The transposed matrix:", memoOutputMatrix);
-	endl();
-	outputMatrix(matrix, memoOutputMatrix);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::multiplyButtonBClick(TObject *Sender)
-{
-	memoOutputMatrix->Text = "";
-	vector<vector<double>> matrix;
-	matrix = inputMatrix(memoInputMatrixB);
-	string str = to_str(constantSelectionBEdit->Text);
-	stringstream s(str);
-	double coefficent;
-	s >> coefficent;
-	stringstream ss;
-	if (coefficent > 1e-10)
-		ss << coefficent;
-	else {
-		coefficent = 1;
-		ss << coefficent;
-	}
-	functions* obj;
-	matrix = obj->multiplier_bykoef(matrix, coefficent);
-	print("The matrix multiplied by " + ss.str() + " :", memoOutputMatrix);
-	endl();
-	outputMatrix(matrix, memoOutputMatrix);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::powerButtonBClick(TObject *Sender)
-{
-	memoOutputMatrix->Text = "";
-	vector<vector<double>> matrix;
-	matrix = inputMatrix(memoInputMatrixB);
-	string str = to_str(powerSelectionBEdit->Text);
-	stringstream s(str);
-	int power;
-	s >> power;
-	stringstream ss;
-	if (power > 1e-10)
-		ss << power;
-	else {
-		power = 1;
-		ss << power;
-	}
-	functions* obj;
-	matrix = obj->power(matrix, power);
-	print("The matrix raised to the power of " + ss.str() + " :", memoOutputMatrix);
-	endl();
-	outputMatrix(matrix, memoOutputMatrix);
 }
 //---------------------------------------------------------------------------
 
