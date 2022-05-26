@@ -60,7 +60,7 @@ const string TForm1::to_str(const String& Str) const
 vector<vector<double>> TForm1::inputMatrix(TMemo* Memo) const
 {
 	int num_of_rows = Memo->Lines->Count;
-	double temp = NULL;
+	double temp = 2.718281828459045;
 	String Str;
 	string str;
 	vector<double> vec;
@@ -73,13 +73,13 @@ vector<vector<double>> TForm1::inputMatrix(TMemo* Memo) const
 			if (Str[i] == ' ' || i == Str.Length()) {
 				stringstream s(str);
 				s >> temp;
-				if (temp != NULL)
+				if (temp != 2.718281828459045)
 					vec.push_back(temp);
-				temp = NULL;
+				temp = 2.718281828459045;
 				str.clear();
 			}
 		}
-		matrix.push_back(vec);
+		if (!vec.empty()) matrix.push_back(vec);
 		vec.clear();
 	}
 
@@ -206,8 +206,7 @@ void __fastcall TForm1::inverseButtonAClick(TObject *Sender)
 		identity_matrix = obj->inverse(matrix);
 		if (identity_matrix.size() == 1 && identity_matrix[0].size() == 1
 			&& identity_matrix[0][0] == 2.718281828459045) {
-			print("The matrix is not invertible because its reduced row-echelon form", memoOutputMatrix);
-			print("is not the identity matrix.", memoOutputMatrix);
+			print("The matrix is not invertible because its reduced row-echelon form is not the identity matrix.", memoOutputMatrix);
 			print("The matrix in reduced row-echelon form:", memoOutputMatrix);
 			endl();
 			outputMatrix(matrix, memoOutputMatrix);
@@ -304,8 +303,7 @@ void __fastcall TForm1::inverseButtonBClick(TObject *Sender)
 		identity_matrix = obj->inverse(matrix);
 		if (identity_matrix.size() == 1 && identity_matrix[0].size() == 1
 			&& identity_matrix[0][0] == 2.718281828459045) {
-			print("The matrix is not invertible because its reduced row-echelon form", memoOutputMatrix);
-			print("is not the identity matrix.", memoOutputMatrix);
+			print("The matrix is not invertible because its reduced row-echelon form is not the identity matrix.", memoOutputMatrix);
 			print("The matrix in reduced row-echelon form:", memoOutputMatrix);
 			endl();
 			outputMatrix(matrix, memoOutputMatrix);
@@ -441,6 +439,130 @@ void __fastcall TForm1::powerButtonBClick(TObject *Sender)
 	print("The matrix raised to the power of " + ss.str() + " :", memoOutputMatrix);
 	endl();
 	outputMatrix(matrix, memoOutputMatrix);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::swapmatricesButtonClick(TObject *Sender)
+{
+	String Str;
+	Str = memoInputMatrixA->Text;
+	memoInputMatrixA->Text = memoInputMatrixB->Text;
+	memoInputMatrixB->Text = Str;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::additionButtonClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	functions* obj;
+	vector<vector<double>> matrixA = inputMatrix(memoInputMatrixA);
+	vector<vector<double>> matrixB = inputMatrix(memoInputMatrixB);
+	vector<vector<double>> matrix = obj->adding(matrixA, matrixB);
+	print("The resulted matrix of addition of matrix A and matrix B:", memoOutputMatrix);
+	endl();
+	outputMatrix(matrix, memoOutputMatrix);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::subtractionButtonClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	functions* obj;
+	vector<vector<double>> matrixA = inputMatrix(memoInputMatrixA);
+	vector<vector<double>> matrixB = inputMatrix(memoInputMatrixB);
+	vector<vector<double>> matrix = obj->subtracting(matrixA, matrixB);
+	print("The resulted matrix of subtraction of matrix B from matrix A:", memoOutputMatrix);
+	endl();
+	outputMatrix(matrix, memoOutputMatrix);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::multiplicationButtonClick(TObject *Sender)
+{
+	memoOutputMatrix->Text = "";
+	functions* obj;
+	vector<vector<double>> matrixA = inputMatrix(memoInputMatrixA);
+	vector<vector<double>> matrixB = inputMatrix(memoInputMatrixB);
+	vector<vector<double>> matrix = obj->multiplication(matrixA, matrixB);
+	print("The resulted matrix of multiplication of matrix A by matrix B:", memoOutputMatrix);
+	endl();
+	outputMatrix(matrix, memoOutputMatrix);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::insertIntoAClick(TObject *Sender)
+{
+	int num_of_rows = memoOutputMatrix->Lines->Count;
+	double temp = 2.718281828459045;
+	String Str;
+	string str;
+	vector<double> vec;
+	vector<vector<double>> matrix;
+
+	for (int i = 2; i < num_of_rows; i++) {
+		Str = memoOutputMatrix->Lines->Strings[i];
+		for (int i = 1; i <= Str.Length(); i++) {
+			str += Str[i];
+			if (Str[i] == ' ' || i == Str.Length()) {
+				stringstream s(str);
+				s >> temp;
+				if (temp != 2.718281828459045)
+					vec.push_back(temp);
+				temp = 2.718281828459045;
+				str.clear();
+			}
+		}
+		if(!vec.empty()) matrix.push_back(vec);
+		vec.clear();
+	}
+
+	int nr = matrix.size();
+	int nc = matrix[0].size();
+	for (int i = 0; i < nr; i++) {
+		if (matrix[i].size() != matrix[0].size())
+			matrix.erase(next(matrix.begin(), i));
+	}
+
+	memoInputMatrixA->Text = "";
+	outputMatrix(matrix, memoInputMatrixA);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::insertIntoBClick(TObject *Sender)
+{
+	int num_of_rows = memoOutputMatrix->Lines->Count;
+	double temp = 2.718281828459045;
+	String Str;
+	string str;
+	vector<double> vec;
+	vector<vector<double>> matrix;
+
+	for (int i = 2; i < num_of_rows; i++) {
+		Str = memoOutputMatrix->Lines->Strings[i];
+		for (int i = 1; i <= Str.Length(); i++) {
+			str += Str[i];
+			if (Str[i] == ' ' || i == Str.Length()) {
+				stringstream s(str);
+				s >> temp;
+				if (temp != 2.718281828459045)
+					vec.push_back(temp);
+				temp = 2.718281828459045;
+				str.clear();
+			}
+		}
+		if(!vec.empty()) matrix.push_back(vec);
+		vec.clear();
+	}
+
+	int nr = matrix.size();
+	int nc = matrix[0].size();
+	for (int i = 0; i < nr; i++) {
+		if (matrix[i].size() != matrix[0].size())
+			matrix.erase(next(matrix.begin(), i));
+	}
+
+	memoInputMatrixB->Text = "";
+	outputMatrix(matrix, memoInputMatrixB);
 }
 //---------------------------------------------------------------------------
 

@@ -22,6 +22,7 @@ object Form1: TForm1
     Height = 32
     Caption = 'A + B'
     TabOrder = 0
+    OnClick = additionButtonClick
   end
   object subtractionButton: TButton
     Left = 439
@@ -30,6 +31,7 @@ object Form1: TForm1
     Height = 32
     Caption = 'A - B'
     TabOrder = 1
+    OnClick = subtractionButtonClick
   end
   object multiplicationButton: TButton
     Left = 439
@@ -38,6 +40,7 @@ object Form1: TForm1
     Height = 32
     Caption = 'A x B'
     TabOrder = 2
+    OnClick = multiplicationButtonClick
   end
   object swapmatricesButton: TButton
     Left = 439
@@ -46,46 +49,18 @@ object Form1: TForm1
     Height = 32
     Caption = ' <-->'
     TabOrder = 3
-  end
-  object equationlistBox: TComboBox
-    Left = 367
-    Top = 258
-    Width = 181
-    Height = 21
-    Cursor = crIBeam
-    Color = clCream
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ItemIndex = 0
-    ParentFont = False
-    TabOrder = 4
-    Text = 'rank(A)'
-    Items.Strings = (
-      'rank(A)'
-      'determinant(A)'
-      'transpose(A)')
-  end
-  object equalsButton: TButton
-    Left = 547
-    Top = 256
-    Width = 41
-    Height = 25
-    Caption = '='
-    TabOrder = 5
+    OnClick = swapmatricesButtonClick
   end
   object matrixA: TGroupBox
-    Left = 9
+    Left = 8
     Top = 8
     Width = 352
     Height = 425
     Caption = 'MATRIX A'
-    Color = clMaroon
+    Color = clHighlight
     ParentBackground = False
     ParentColor = False
-    TabOrder = 6
+    TabOrder = 4
     object cleanButtonA: TButton
       Left = 16
       Top = 227
@@ -205,10 +180,10 @@ object Form1: TForm1
     Width = 352
     Height = 425
     Caption = 'MATRIX B'
-    Color = clOlive
+    Color = clHighlight
     ParentBackground = False
     ParentColor = False
-    TabOrder = 7
+    TabOrder = 5
     object cleanButtonB: TButton
       Left = 16
       Top = 227
@@ -219,7 +194,7 @@ object Form1: TForm1
       OnClick = cleanButtonBClick
     end
     object memoInputMatrixB: TMemo
-      Left = 19
+      Left = 16
       Top = 21
       Width = 321
       Height = 200
@@ -323,12 +298,12 @@ object Form1: TForm1
     end
   end
   object output: TGroupBox
-    Left = 238
+    Left = 80
     Top = 439
-    Width = 459
+    Width = 785
     Height = 250
     Caption = 'RESULT'
-    Color = clGreen
+    Color = clHighlight
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -337,17 +312,35 @@ object Form1: TForm1
     ParentBackground = False
     ParentColor = False
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 6
     object memoOutputMatrix: TMemo
-      Left = 15
-      Top = 24
-      Width = 426
-      Height = 209
+      Left = 16
+      Top = 16
+      Width = 753
+      Height = 223
       Color = clCream
       Lines.Strings = (
         'outputMemo')
       ScrollBars = ssBoth
       TabOrder = 0
     end
+  end
+  object insertIntoA: TButton
+    Left = 366
+    Top = 397
+    Width = 107
+    Height = 36
+    Caption = 'Insert result into A'
+    TabOrder = 7
+    OnClick = insertIntoAClick
+  end
+  object insertIntoB: TButton
+    Left = 481
+    Top = 397
+    Width = 107
+    Height = 36
+    Caption = 'Insert result into B'
+    TabOrder = 8
+    OnClick = insertIntoBClick
   end
 end

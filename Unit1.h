@@ -26,8 +26,6 @@ __published:	// IDE-managed Components
 	TButton *subtractionButton;
 	TButton *multiplicationButton;
 	TButton *swapmatricesButton;
-	TComboBox *equationlistBox;
-	TButton *equalsButton;
 	TGroupBox *matrixA;
 	TButton *cleanButtonA;
 	TMemo *memoInputMatrixA;
@@ -56,6 +54,8 @@ __published:	// IDE-managed Components
 	TButton *transposeButtonB;
 	TGroupBox *output;
 	TMemo *memoOutputMatrix;
+	TButton *insertIntoA;
+	TButton *insertIntoB;
 	void __fastcall cleanButtonAClick(TObject *Sender);
 	void __fastcall rowEchelonButtonAClick(TObject *Sender);
 	void __fastcall reducedRowEchelonButtonAClick(TObject *Sender);
@@ -74,6 +74,12 @@ __published:	// IDE-managed Components
 	void __fastcall transposeButtonBClick(TObject *Sender);
 	void __fastcall multiplyButtonBClick(TObject *Sender);
 	void __fastcall powerButtonBClick(TObject *Sender);
+	void __fastcall swapmatricesButtonClick(TObject *Sender);
+	void __fastcall additionButtonClick(TObject *Sender);
+	void __fastcall subtractionButtonClick(TObject *Sender);
+	void __fastcall multiplicationButtonClick(TObject *Sender);
+	void __fastcall insertIntoAClick(TObject *Sender);
+	void __fastcall insertIntoBClick(TObject *Sender);
 private:	// User declarations
 protected:	// User declarations
 public:		// User declarations
